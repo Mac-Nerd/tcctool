@@ -13,7 +13,7 @@ Reads the system and user tcc.db and translates the following:
 - last modified date
 
 ## See also:
-(https://www.rainforestqa.com/blog/macos-tcc-db-deep-dive)[https://www.rainforestqa.com/blog/macos-tcc-db-deep-dive]
+[https://www.rainforestqa.com/blog/macos-tcc-db-deep-dive](https://www.rainforestqa.com/blog/macos-tcc-db-deep-dive)
 
 ## To Do
 - List of apps present in TCC.db that are no longer installed.
