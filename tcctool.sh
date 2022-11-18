@@ -1,15 +1,6 @@
 #!/bin/zsh
 
-# version 2.6, 03-25-2022
-
-# ----- Legal: ----
-# Sample scripts are not supported under any N-able support program or service.
-# The sample scripts are provided AS IS without warranty of any kind.
-# N-able expressly disclaims all implied warranties including, warranties
-# of merchantability or of fitness for a particular purpose.
-# In no event shall N-able or any other party be liable for damages arising
-# out of the use of or inability to use the sample scripts.
-# ----- /Legal ----
+# version 2.8, 15 November 2022
 
 # !!! Terminal or process running this script will need Full Disk Access
 
@@ -26,10 +17,34 @@
 
 
 if [ -z "${ZSH_VERSION}" ]; then
-  >&2 echo "ERROR: This script is only compatible with Z shell (/bin/zsh)."
+  >&2 echo "ERROR: This script is only compatible with Z shell (/bin/zsh). Invoke with 'zsh tcctool.sh'"
   exit 1
 fi
 
+
+
+# CSV Columns:
+# Source - System, MDM, User
+# Username - user shortname
+# Client - app name
+# ClientID - identifier
+# ServiceName - eg "kTCCServiceAddressBook"
+# ServiceFriendlyName - eg "Contacts"
+# AuthValue - Denied, Unknown, Allowed, Limited
+# AuthReason - User Set, System Set, etc
+# Timestamp - UNIX epoch time
+# FormattedTime - modified time ISO formatted (eg "2022-11-15T13:42:19-07:00")
+# Coming Soon: IsInstalled - is client app installed boolean 0/1 
+# Coming Soon: CodeSignReq
+
+CSVArrayHeader="Source, Username, Client, ClientID, ServiceName, ServiceFriendlyName, AuthValue, AuthReason, Timestamp, FormattedTime"
+
+typeset -A CSVArray
+CSVArray=${CSVArrayHeader}
+
+
+typeset -A RowArray
+# each row in tcc.db builds a row in the CSV. RowArray holds the values, then those are echoed to a new line in CSVArray
 
 
 # TCC Translator arrays
@@ -108,6 +123,8 @@ CurrentClient=""
 processRow() {
 	TCCRow=$1
 	RawClient=$(echo $TCCRow | cut -d',' -f1)
+
+	RowArray[Client]=\"$( basename $RawClient)\"
 	
 	ClientType=$(echo $TCCRow | cut -d',' -f2)
 	if [ $ClientType -eq 0 ]
@@ -119,30 +136,44 @@ processRow() {
 		fi
 	else
 		Client=$RawClient
+		RowArray[ClientID]="\"$Client\""
 	fi
+
 		
 	ServiceName=$(echo $TCCRow | cut -d',' -f3)
 	AuthVal=$(echo $TCCRow | cut -d',' -f4)
 	AuthReason=$(echo $TCCRow | cut -d',' -f5)
 	DateAuthEpoch=$(echo $TCCRow | cut -d',' -f6)
 
-	DateAuth=$(date -r $DateAuthEpoch +"%d %h, %Y")
+	DateAuth=$(date -jI "hours" -r $DateAuthEpoch)
+
+	RowArray[ServiceName]=$ServiceName
+	RowArray[Timestamp]=$DateAuthEpoch
+	RowArray[FormattedTime]=$DateAuth
+
+
+
 	
 	if [ "$Client" != "$CurrentClient" ]
 	then
 		CurrentClient=$Client
 		ShortClient=$(basename $Client) # clean up paths a bit
-		printf "--- \n\n%s\n" $ShortClient
+#		printf "--- \n\n%s\n" $ShortClient
 		CurrentAuthVal=""
 	fi
  
 	if [ "$AuthVal" != "$CurrentAuthVal" ]
 	then
 		CurrentAuthVal=$AuthVal
-		printf "\t%s:\n" $AuthValueArray[$AuthVal]
+#		printf "\t%s:\n" $AuthValueArray[$AuthVal]
 	fi
  
-	printf "\t\t%s (%s - %s)\n"	 $ServiceArray[$ServiceName] $AuthReasonArray[$AuthReason] $DateAuth
+	# printf "\t\t%s (%s - %s)\n"	 $ServiceArray[$ServiceName] $AuthReasonArray[$AuthReason] $DateAuth
+
+	RowArray[ServiceFriendlyName]=\"$ServiceArray[$ServiceName]\"
+	RowArray[AuthValue]=$AuthValueArray[$AuthVal]
+	RowArray[AuthReason]=\"$AuthReasonArray[$AuthReason]\"
+
 }
 
 
@@ -150,17 +181,46 @@ processRow() {
 
 # start with the system defaults:
 
-echo "======== [System Default Permissions]"
+# echo "======== [System Default Permissions]"
 
 sqlite3 /Library/Application\ Support/com.apple.tcc/tcc.db -csv -noheader -nullvalue '-' \
-'select client, client_type, service, auth_value, auth_reason, last_modified from access order by client, auth_value' \
+'select client, client_type, service, auth_value, auth_reason, last_modified from access order by client, auth_value' 2>/dev/null \
 | while read -r TCCRow
 do
+	# reset the RowArray
+	RowArray[Source]="System"
+	RowArray[Username]=""
+	RowArray[Client]=""
+	RowArray[ClientID]=""
+	RowArray[ServiceName]=""
+	RowArray[ServiceFriendlyName]=""
+	RowArray[AuthValue]=""
+	RowArray[AuthReason]=""
+	RowArray[Timestamp]=""
+	RowArray[FormattedTime]=""
+
 	processRow "$TCCRow"
+
+	RowString="${RowArray[Source]},\
+${RowArray[Username]},\
+${RowArray[Client]},\
+${RowArray[ClientID]},\
+${RowArray[ServiceName]},\
+${RowArray[ServiceFriendlyName]},\
+${RowArray[AuthValue]},\
+${RowArray[AuthReason]},\
+${RowArray[Timestamp]},\
+${RowArray[FormattedTime]}"
+
+	CSVArray+=(${RowString})
+	
 done
 
+# 
+# printf '%s\n' "${CSVArray[@]}"
+# 
 
-echo "======== [Per-user Permissions Overrides]"
+# echo "======== [Per-user Permissions Overrides]"
 
 
 # list all Users' home directories (uses dscl in the rare instance they're not in /Users/*)
@@ -172,13 +232,40 @@ do
 	if [ -f "${USERHOME}/Library/Application Support/com.apple.tcc/tcc.db" ]
 	then
 	
-		echo "================ [ ${USERHOME} ]"
+#		echo "================ [ ${USERHOME} ]"
+		UserShortName=$( basename $USERHOME )
 
 		sqlite3 ${USERHOME}/Library/Application\ Support/com.apple.tcc/tcc.db -csv -noheader -nullvalue '-' \
-		'select client, client_type, service, auth_value, auth_reason, last_modified from access order by client, auth_value' \
+		'select client, client_type, service, auth_value, auth_reason, last_modified from access order by client, auth_value'  2>/dev/null \
 		| while read -r TCCRow
 		do
+			# reset the RowArray
+			RowArray[Source]="User"
+			RowArray[Username]=$UserShortName
+			RowArray[Client]=""
+			RowArray[ClientID]=""
+			RowArray[ServiceName]=""
+			RowArray[ServiceFriendlyName]=""
+			RowArray[AuthValue]=""
+			RowArray[AuthReason]=""
+			RowArray[Timestamp]=""
+			RowArray[FormattedTime]=""
+
 			processRow "$TCCRow"
+
+			RowString="${RowArray[Source]},\
+${RowArray[Username]},\
+${RowArray[Client]},\
+${RowArray[ClientID]},\
+${RowArray[ServiceName]},\
+${RowArray[ServiceFriendlyName]},\
+${RowArray[AuthValue]},\
+${RowArray[AuthReason]},\
+${RowArray[Timestamp]},\
+${RowArray[FormattedTime]}"
+
+			CSVArray+=(${RowString})
+	
 		done
 		
 	fi
@@ -186,11 +273,16 @@ do
 done
 
 
+printf '%s\n' "${CSVArray[@]}"
+
+
+
+
 # MDM profile overrides
 
 if [ -f "/Library/Application Support/com.apple.TCC/MDMOverrides.plist" ]
 then
-	echo "======== [ MDM TCC Profiles ]"
+#	echo "======== [ MDM TCC Profiles ]"
 
 	FullMDMOverrides=$(plutil -convert xml1 -o - /Library/Application\ Support/com.apple.TCC/MDMOverrides.plist)
 
@@ -200,7 +292,7 @@ then
 
 	for Identifier in ${=MDMOverrides}
 	do
-		printf "--- \n%s\n" $Identifier
+		# printf "--- \n%s\n" $Identifier
 		
 		IdentifierXML=$(echo $FullMDMOverrides | xmllint --xpath "/*/dict[*]/dict[$Index]" -)
 
@@ -222,9 +314,38 @@ then
 				AuthVal="$(echo $IdentifierXML | xmllint --xpath "/dict/dict[$ServiceIndex]/key[1]" - | sed 's/<[^>]*>//g')"	
 			fi
 
-			printf "\t%s:\n" $AuthVal
-			printf "\t\t%s\n" $ServiceArray[$ServiceName]
+# 			printf "\t%s:\n" $AuthVal
+# 			printf "\t\t%s\n" $ServiceArray[$ServiceName]
 			((ServiceIndex++))
+
+			# reset the RowArray
+			RowArray[Source]="MDM"
+			RowArray[Username]=""
+			RowArray[Client]=""
+			RowArray[ClientID]=""
+			RowArray[ServiceName]=$ServiceName
+			RowArray[AuthValue]=$AuthVal
+			RowArray[AuthReason]="MDM"
+			RowArray[Timestamp]=""
+			RowArray[FormattedTime]=""
+
+			RowArray[ServiceFriendlyName]=\"$ServiceArray[$ServiceName]\"
+			RowArray[AuthReason]=\"$AuthReasonArray[$AuthReason]\"
+
+			RowString="${RowArray[Source]},\
+${RowArray[Username]},\
+${RowArray[Client]},\
+${RowArray[ClientID]},\
+${RowArray[ServiceName]},\
+${RowArray[ServiceFriendlyName]},\
+${RowArray[AuthValue]},\
+${RowArray[AuthReason]},\
+${RowArray[Timestamp]},\
+${RowArray[FormattedTime]}"
+
+			CSVArray+=(${RowString})
+
+
 
 		done
 
@@ -233,6 +354,6 @@ then
 
 
 else 
-	echo "======== [ No MDM TCC Profiles found ]"
+#	echo "======== [ No MDM TCC Profiles found ]"
 fi	
 

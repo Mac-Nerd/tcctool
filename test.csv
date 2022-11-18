@@ -1,0 +1,133 @@
+Source, Username, Client, ClientID, ServiceName, ServiceFriendlyName, AuthValue, AuthReason, Timestamp, FormattedTime
+System,,"AEServer","/System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/AE.framework/Versions/A/Support/AEServer",kTCCServiceAccessibility,"Control the computer",Denied,"System Set",1666655995,2022-10-24T19-04:00
+System,,"sh","/bin/sh",kTCCServiceSystemPolicyAllFiles,"Full Disk Access",Denied,"Service Policy",1666700016,2022-10-25T08-04:00
+System,,"sshd-keygen-wrapper","/usr/libexec/sshd-keygen-wrapper",kTCCServiceSystemPolicyAllFiles,"Full Disk Access",Denied,"System Set",1666655994,2022-10-24T19-04:00
+System,,"com.apple.Terminal",,kTCCServiceDeveloperTool,"Run insecure software locally",Denied,"System Set",1667324843,2022-11-01T13-04:00
+System,,"com.apple.Terminal",,kTCCServiceSystemPolicyAllFiles,"Full Disk Access",Allowed,"System Set",1667326251,2022-11-01T14-04:00
+System,,"com.apple.XProtectFramework.XProtect",,kTCCServiceSystemPolicyAllFiles,"Full Disk Access",Denied,"Service Policy",1667520584,2022-11-03T20-04:00
+System,,"com.apple.screensharing.agent",,kTCCServicePostEvent,"Send keystrokes",Denied,"System Set",1666655994,2022-10-24T19-04:00
+System,,"com.apple.screensharing.agent",,kTCCServiceScreenCapture,"Capture screen contents",Denied,"System Set",1666655995,2022-10-24T19-04:00
+System,,"com.backblaze.Backblaze",,kTCCServiceSystemPolicyAllFiles,"Full Disk Access",Allowed,"System Set",1666762215,2022-10-26T01-04:00
+System,,"com.backblaze.bzbmenu",,kTCCServiceSystemPolicyAllFiles,"Full Disk Access",Denied,"Service Policy",1666762314,2022-10-26T01-04:00
+System,,"com.getdropbox.dropbox",,kTCCServiceSystemPolicyAllFiles,"Full Disk Access",Allowed,"System Set",1666762216,2022-10-26T01-04:00
+System,,"com.getdropbox.dropbox",,kTCCServiceAccessibility,"Control the computer",Allowed,"System Set",1666762231,2022-10-26T01-04:00
+System,,"com.prosofteng.DriveGenius2",,kTCCServiceListenEvent,"Monitor input from the keyboard",Denied,"System Set",1666700545,2022-10-25T08-04:00
+System,,"org.virtualbox.app.VirtualBox",,kTCCServiceListenEvent,"Monitor input from the keyboard",Allowed,"System Set",1667152746,2022-10-30T13-04:00
+System,,"org.virtualbox.app.VirtualBox",,kTCCServicePostEvent,"Send keystrokes",Allowed,"System Set",1667152763,2022-10-30T13-04:00
+User,option8,"accountsd","/System/Library/Frameworks/Accounts.framework/Versions/A/Support/accountsd",kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"askpermissiond","/System/Library/PrivateFrameworks/AskPermission.framework/Versions/A/Resources/askpermissiond",kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"CallHistorySyncHelper","/System/Library/PrivateFrameworks/CallHistory.framework/Support/CallHistorySyncHelper",kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"contactsdonationagent","/System/Library/PrivateFrameworks/ContactsDonation.framework/Versions/A/Support/contactsdonationagent",kTCCServiceUbiquity,"iCloud",Allowed,"Service Policy",1662649642,2022-09-08T11-04:00
+User,option8,"passd","/System/Library/PrivateFrameworks/PassKitCore.framework/passd",kTCCServiceUbiquity,"iCloud",Allowed,"Service Policy",1662601015,2022-09-07T21-04:00
+User,option8,"photolibraryd","/System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd",kTCCServiceUbiquity,"iCloud",Allowed,"Service Policy",1662600999,2022-09-07T21-04:00
+User,option8,"photolibraryd","/System/Library/PrivateFrameworks/PhotoLibraryServices.framework/Versions/A/Support/photolibraryd",kTCCServiceLiverpool,"Location services",Allowed,"Service Policy",1662655745,2022-09-08T12-04:00
+User,option8,"touristd","/System/Library/PrivateFrameworks/Tourist.framework/Versions/A/Resources/touristd",kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"lsboxd","/usr/libexec/lsboxd",kTCCServiceCalendar,"Calendar",Denied,"Inherited/Unknown",1627400380,2021-07-27T11-04:00
+User,option8,"2BUA8C4S2C.com.agilebits.onepassword-osx-helper",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,""com.Logitech.Control Center.Daemon"",,kTCCServiceAppleEvents,"Apple Events",Denied,"Inherited/Unknown",1620834795,2021-05-12T11-04:00
+User,option8,"com.adiumX.adiumX",,kTCCServiceAddressBook,"Contacts",Denied,"Inherited/Unknown",1627400383,2021-07-27T11-04:00
+User,option8,"com.agilebits.onepassword-osx",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620679880,2021-05-10T16-04:00
+User,option8,"com.agilebits.onepassword7",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1653018340,2022-05-19T23-04:00
+User,option8,"com.apple.BluetoothExplorer",,kTCCServiceBluetoothAlways,"Bluetooth",Allowed,"User Consent",1663804244,2022-09-21T19-04:00
+User,option8,"com.apple.CloudDocs.MobileDocumentsFileProvider",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.InputMethodKit.TextReplacementService",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.Notes",,kTCCServiceLiverpool,"Location services",Allowed,"Inherited/Unknown",1640736252,2021-12-28T19-05:00
+User,option8,"com.apple.Notes",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1660415657,2022-08-13T14-04:00
+User,option8,"com.apple.Photos",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.Preview",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.QuickTimePlayerX",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.Safari",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.Safari",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.ScreenTimeAgent",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666699998,2022-10-25T08-04:00
+User,option8,"com.apple.StatusKitAgent",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.Terminal",,kTCCServiceUbiquity,"iCloud",Allowed,"Service Policy",1663114510,2022-09-13T20-04:00
+User,option8,"com.apple.Terminal",,kTCCServiceAppleEvents,"Apple Events",Allowed,"User Set",1663884589,2022-09-22T18-04:00
+User,option8,"com.apple.Terminal",,kTCCServiceSystemPolicyDocumentsFolder,"Files in Documents folder",Allowed,"User Consent",1667323015,2022-11-01T13-04:00
+User,option8,"com.apple.TextEdit",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.TrustedPeersHelper",,kTCCServiceLiverpool,"Location services",Allowed,"Inherited/Unknown",1620139208,2021-05-04T10-04:00
+User,option8,"com.apple.amsengagementd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.appleaccountd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1667100304,2022-10-29T23-04:00
+User,option8,"com.apple.assistant.assistantd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666699991,2022-10-25T08-04:00
+User,option8,"com.apple.avatarsd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.callhistory.sync-helper",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.cloudpaird",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.cloudphotod",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.cloudphotosd",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.donotdisturbd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.finder",,kTCCServiceUbiquity,"iCloud",Allowed,"System Set",1666700221,2022-10-25T08-04:00
+User,option8,"com.apple.gamed",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.garageband10",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.garageband10",,kTCCServiceMicrophone,"Microphone",Allowed,"Inherited/Unknown",1660485220,2022-08-14T09-04:00
+User,option8,"com.apple.iMovieApp",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1638400148,2021-12-01T18-05:00
+User,option8,"com.apple.iMovieApp",,kTCCServicePhotos,"Read Photos",Allowed,"Inherited/Unknown",1638400157,2021-12-01T18-05:00
+User,option8,"com.apple.iWork.Keynote",,kTCCServiceAddressBook,"Contacts",Denied,"User Consent",1666273501,2022-10-20T09-04:00
+User,option8,"com.apple.iWork.Keynote",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.iWork.Keynote",,kTCCServiceLiverpool,"Location services",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.iWork.Pages",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.iWork.Pages",,kTCCServiceLiverpool,"Location services",Allowed,"Inherited/Unknown",1620745868,2021-05-11T11-04:00
+User,option8,"com.apple.iad-cloudkit",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700223,2022-10-25T08-04:00
+User,option8,"com.apple.icloud.fmfd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.icloud.searchpartyuseragent",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.identityservicesd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700258,2022-10-25T08-04:00
+User,option8,"com.apple.imagent",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700005,2022-10-25T08-04:00
+User,option8,"com.apple.knowledge-agent",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.mail",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.mail",,kTCCServiceLiverpool,"Location services",Allowed,"Inherited/Unknown",1620660177,2021-05-10T11-04:00
+User,option8,"com.apple.passd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700014,2022-10-25T08-04:00
+User,option8,"com.apple.protectedcloudstorage.protectedcloudkeysyncing",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666699990,2022-10-25T08-04:00
+User,option8,"com.apple.remindd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.routined",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666699991,2022-10-25T08-04:00
+User,option8,"com.apple.security.cuttlefish",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1662600962,2022-09-07T21-04:00
+User,option8,"com.apple.securityd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666699987,2022-10-25T08-04:00
+User,option8,"com.apple.shortcuts",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.siriknowledged",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.sociallayerd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1667106660,2022-10-30T01-04:00
+User,option8,"com.apple.stocks-widget-container",,kTCCServiceLiverpool,"Location services",Allowed,"Inherited/Unknown",1620140740,2021-05-04T11-04:00
+User,option8,"com.apple.suggestd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.apple.syncdefaultsd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666699989,2022-10-25T08-04:00
+User,option8,"com.apple.textinput.KeyboardServices",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700588,2022-10-25T08-04:00
+User,option8,"com.apple.triald",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666699991,2022-10-25T08-04:00
+User,option8,"com.apple.universalcontrol",,kTCCServiceUbiquity,"iCloud",Allowed,"System Set",1666700309,2022-10-25T08-04:00
+User,option8,"com.apple.upload-request-proxy.com.apple.photos.cloud",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1662601872,2022-09-07T21-04:00
+User,option8,"com.apple.weather",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.apple.weather.WeatherIntents",,kTCCServiceUbiquity,"iCloud",Allowed,"System Set",1666700005,2022-10-25T08-04:00
+User,option8,"com.apple.wifi.WiFiAgent",,kTCCServiceUbiquity,"iCloud",Allowed,"System Set",1666701347,2022-10-25T08-04:00
+User,option8,"com.apple.willowd",,kTCCServiceLiverpool,"Location services",Allowed,"System Set",1666700222,2022-10-25T08-04:00
+User,option8,"com.barebones.bbedit",,kTCCServiceAddressBook,"Contacts",Denied,"Inherited/Unknown",1627400384,2021-07-27T11-04:00
+User,option8,"com.barebones.bbedit",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.barebones.bbedit",,kTCCServiceSystemPolicyDocumentsFolder,"Files in Documents folder",Allowed,"User Consent",1666911018,2022-10-27T18-04:00
+User,option8,"com.cisco.webexmeetingsapp",,kTCCServiceMicrophone,"Microphone",Denied,"User Consent",1663986825,2022-09-23T22-04:00
+User,option8,"com.google.Chrome",,kTCCServiceSystemPolicyRemovableVolumes,"Files on a removable volume",Allowed,"Inherited/Unknown",1627946015,2021-08-02T19-04:00
+User,option8,"com.google.Chrome",,kTCCServiceMicrophone,"Microphone",Allowed,"Inherited/Unknown",1653335150,2022-05-23T15-04:00
+User,option8,"com.google.Chrome",,kTCCServiceCamera,"Camera",Allowed,"Inherited/Unknown",1653335151,2022-05-23T15-04:00
+User,option8,"com.indeeo.idraw",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.install4j.5517-2803-0637-4585.64",,kTCCServiceSystemPolicyDesktopFolder,"Desktop folder",Allowed,"User Consent",1667532383,2022-11-03T23-04:00
+User,option8,"com.intuit.turbotax.2018",,kTCCServiceCalendar,"Calendar",Denied,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.logmein.GoToMeeting",,kTCCServiceMicrophone,"Microphone",Allowed,"Inherited/Unknown",1627405389,2021-07-27T13-04:00
+User,option8,"com.logmein.GoToMeeting",,kTCCServiceCamera,"Camera",Allowed,"User Consent",1666280126,2022-10-20T11-04:00
+User,option8,"com.microsoft.rdc.macos",,kTCCServiceCamera,"Camera",Denied,"System Set",1666762280,2022-10-26T01-04:00
+User,option8,"com.microsoft.rdc.macos",,kTCCServiceMicrophone,"Microphone",Denied,"System Set",1666762287,2022-10-26T01-04:00
+User,option8,"com.microsoft.teams",,kTCCServiceCamera,"Camera",Denied,"System Set",1666762281,2022-10-26T01-04:00
+User,option8,"com.microsoft.teams",,kTCCServiceMicrophone,"Microphone",Denied,"System Set",1666762288,2022-10-26T01-04:00
+User,option8,"com.omnigroup.OmniOutliner5.MacAppStore",,kTCCServiceUbiquity,"iCloud",Allowed,"Service Policy",1662649641,2022-09-08T11-04:00
+User,option8,"com.panic.Coda2",,kTCCServiceAddressBook,"Contacts",Denied,"Inherited/Unknown",1627400387,2021-07-27T11-04:00
+User,option8,"com.panic.Coda2",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.pixelmatorteam.pixelmator",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.pixelmatorteam.pixelmator.x",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1655923095,2022-06-22T14-04:00
+User,option8,"com.pixelmatorteam.pixelmator.x",,kTCCServiceSystemPolicyDesktopFolder,"Desktop folder",Allowed,"User Consent",1667411856,2022-11-02T13-04:00
+User,option8,"com.smileonmymac.PDFpen",,kTCCServiceAddressBook,"Contacts",Denied,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.smileonmymac.PDFpen",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.smileonmymac.PDFpen.MacAppStore",,kTCCServiceAddressBook,"Contacts",Denied,"Inherited/Unknown",1627400389,2021-07-27T11-04:00
+User,option8,"com.smileonmymac.PDFpen.MacAppStore",,kTCCServiceUbiquity,"iCloud",Allowed,"Inherited/Unknown",1620139204,2021-05-04T10-04:00
+User,option8,"com.tinyspeck.slackmacgap",,kTCCServiceSystemPolicyDownloadsFolder,"Files in Downloads folder",Allowed,"User Consent",1666904579,2022-10-27T17-04:00
+User,option8,"com.ulyssesapp.mac",,kTCCServiceUbiquity,"iCloud",Allowed,"Service Policy",1665071442,2022-10-06T11-04:00
+User,option8,"com.ulyssesapp.mac",,kTCCServiceLiverpool,"Location services",Allowed,"Service Policy",1665071443,2022-10-06T11-04:00
+User,option8,"com.webex.meetingmanager",,kTCCServiceMicrophone,"Microphone",Denied,"Inherited/Unknown",1656887084,2022-07-03T18-04:00
+User,option8,"com.webex.meetingmanager",,kTCCServiceCamera,"Camera",Allowed,"Inherited/Unknown",1620838731,2021-05-12T12-04:00
+User,option8,"info.colloquy",,kTCCServiceAddressBook,"Contacts",Denied,"Inherited/Unknown",1627400390,2021-07-27T11-04:00
+User,option8,"org.mozilla.thunderbird",,kTCCServiceAddressBook,"Contacts",Denied,"Inherited/Unknown",1627400391,2021-07-27T11-04:00
+User,option8,"org.virtualbox.app.VirtualBox",,kTCCServiceSystemPolicyDocumentsFolder,"Files in Documents folder",Allowed,"User Consent",1667150920,2022-10-30T13-04:00
+User,option8,"us.zoom.broadview",,kTCCServiceMicrophone,"Microphone",Denied,"System Set",1666762292,2022-10-26T01-04:00
+User,option8,"us.zoom.broadview",,kTCCServiceCamera,"Camera",Allowed,"Inherited/Unknown",1646246642,2022-03-02T13-05:00
+User,option8,"us.zoom.xos",,kTCCServiceMicrophone,"Microphone",Denied,"System Set",1666762293,2022-10-26T01-04:00
+User,option8,"us.zoom.xos",,kTCCServiceCamera,"Camera",Allowed,"Inherited/Unknown",1621022472,2021-05-14T16-04:00
