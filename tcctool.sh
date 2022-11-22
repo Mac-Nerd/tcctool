@@ -21,6 +21,8 @@ if [ -z "${ZSH_VERSION}" ]; then
   exit 1
 fi
 
+# Command line options
+zparseopts -D -E -F -K -- o:=OutputFile
 
 
 # CSV Columns:
@@ -34,10 +36,10 @@ fi
 # AuthReason - User Set, System Set, etc
 # Timestamp - UNIX epoch time
 # FormattedTime - modified time ISO formatted (eg "2022-11-15T13:42:19-07:00")
+# CodeSignReq - code signing requirements
 # Coming Soon: IsInstalled - is client app installed boolean 0/1 
-# Coming Soon: CodeSignReq
 
-CSVArrayHeader="Source, Username, Client, ClientID, ServiceName, ServiceFriendlyName, AuthValue, AuthReason, Timestamp, FormattedTime"
+CSVArrayHeader="Source, Username, Client, ClientID, ServiceName, ServiceFriendlyName, AuthValue, AuthReason, Timestamp, FormattedTime, CodeSignReq"
 
 typeset -A CSVArray
 CSVArray=${CSVArrayHeader}
@@ -151,8 +153,14 @@ processRow() {
 	RowArray[Timestamp]=$DateAuthEpoch
 	RowArray[FormattedTime]=$DateAuth
 
-
-
+	CodeSignReqHex=$(echo $TCCRow | cut -d',' -f7)
+	
+	if [ $CodeSignReqHex != "NULL" ]
+	then
+		CodeSignReqString=$(echo $CodeSignReqHex | xxd -r -p | csreq -r - -t /dev/stdin)
+	fi
+	
+	RowArray[CodeSignReq]=$CodeSignReqString
 	
 	if [ "$Client" != "$CurrentClient" ]
 	then
@@ -184,7 +192,7 @@ processRow() {
 # echo "======== [System Default Permissions]"
 
 sqlite3 /Library/Application\ Support/com.apple.tcc/tcc.db -csv -noheader -nullvalue '-' \
-'select client, client_type, service, auth_value, auth_reason, last_modified from access order by client, auth_value' 2>/dev/null \
+'select client, client_type, service, auth_value, auth_reason, last_modified, quote(csreq) from access order by client, auth_value' 2>/dev/null \
 | while read -r TCCRow
 do
 	# reset the RowArray
@@ -198,7 +206,8 @@ do
 	RowArray[AuthReason]=""
 	RowArray[Timestamp]=""
 	RowArray[FormattedTime]=""
-
+	RowArray[CodeSignReq]=""
+	
 	processRow "$TCCRow"
 
 	RowString="${RowArray[Source]},\
@@ -210,7 +219,8 @@ ${RowArray[ServiceFriendlyName]},\
 ${RowArray[AuthValue]},\
 ${RowArray[AuthReason]},\
 ${RowArray[Timestamp]},\
-${RowArray[FormattedTime]}"
+${RowArray[FormattedTime]},\
+${RowArray[CodeSignReq]}"
 
 	CSVArray+=(${RowString})
 	
@@ -236,7 +246,7 @@ do
 		UserShortName=$( basename $USERHOME )
 
 		sqlite3 ${USERHOME}/Library/Application\ Support/com.apple.tcc/tcc.db -csv -noheader -nullvalue '-' \
-		'select client, client_type, service, auth_value, auth_reason, last_modified from access order by client, auth_value'  2>/dev/null \
+		'select client, client_type, service, auth_value, auth_reason, last_modified, quote(csreq) from access order by client, auth_value'  2>/dev/null \
 		| while read -r TCCRow
 		do
 			# reset the RowArray
@@ -250,6 +260,7 @@ do
 			RowArray[AuthReason]=""
 			RowArray[Timestamp]=""
 			RowArray[FormattedTime]=""
+			RowArray[CodeSignReq]=""
 
 			processRow "$TCCRow"
 
@@ -262,7 +273,8 @@ ${RowArray[ServiceFriendlyName]},\
 ${RowArray[AuthValue]},\
 ${RowArray[AuthReason]},\
 ${RowArray[Timestamp]},\
-${RowArray[FormattedTime]}"
+${RowArray[FormattedTime]},\
+${RowArray[CodeSignReq]}"
 
 			CSVArray+=(${RowString})
 	
@@ -272,8 +284,14 @@ ${RowArray[FormattedTime]}"
 
 done
 
+if [[ ${#OutputFile} -eq 2 ]]; then
+	echo "Saving tcc.db output to ${OutputFile[-1]}"
 
-printf '%s\n' "${CSVArray[@]}"
+	printf '%s\n' "${CSVArray[@]}" > $OutputFile[-1]
+else
+	printf '%s\n' "${CSVArray[@]}"	
+fi
+
 
 
 
@@ -341,7 +359,8 @@ ${RowArray[ServiceFriendlyName]},\
 ${RowArray[AuthValue]},\
 ${RowArray[AuthReason]},\
 ${RowArray[Timestamp]},\
-${RowArray[FormattedTime]}"
+${RowArray[FormattedTime]},\
+${RowArray[CodeSignReq]}"
 
 			CSVArray+=(${RowString})
 
