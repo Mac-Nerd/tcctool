@@ -11,6 +11,7 @@ Reads the system and user tcc.db and translates the following:
 - `auth_reason` (user, system default, MDM)
 - `indirect_object_identifier`
 - last modified date
+- code signing requirement
 
 Outputs the report in CSV
 
