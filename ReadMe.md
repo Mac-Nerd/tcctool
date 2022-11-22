@@ -1,4 +1,4 @@
-# TCC Util
+# TCC Tool
 version 2.8, 15 November 2022
 
 _Note: Terminal.app or the process running this script will need Full Disk Access_
