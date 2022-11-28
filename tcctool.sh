@@ -1,6 +1,6 @@
 #!/bin/zsh
 
-# version 2.8, 15 November 2022
+# version 2.9, 28 November 2022
 
 # !!! Terminal or process running this script will need Full Disk Access
 
@@ -147,7 +147,7 @@ processRow() {
 	AuthReason=$(echo $TCCRow | cut -d',' -f5)
 	DateAuthEpoch=$(echo $TCCRow | cut -d',' -f6)
 
-	DateAuth=$(date -jI "hours" -r $DateAuthEpoch)
+	DateAuth=$(date -r $DateAuthEpoch +%Y-%m-%dT%H%z)
 
 	RowArray[ServiceName]=$ServiceName
 	RowArray[Timestamp]=$DateAuthEpoch
