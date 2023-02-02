@@ -21,6 +21,15 @@ if [ -z "${ZSH_VERSION}" ]; then
   exit 1
 fi
 
+# Credit to Pico @ Macadmins Slack
+if [ ! -r '/Library/Application Support/com.apple.TCC/TCC.db' ]; then
+  ParentProcess=$(basename $(ps -o command= $(ps -o ppid= $(ps -o ppid= | head -1))))
+  # "Terminal" if run manually. Otherwise, the agent process running scripts.
+  >&2 echo "ERROR: $ParentProcess must have Full Disk Access in order to read the TCC database."
+  exit 1
+fi
+
+
 # Command line options
 zparseopts -D -E -F -K -- o:=OutputFile
 
