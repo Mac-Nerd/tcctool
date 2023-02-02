@@ -1,7 +1,7 @@
 # TCC Tool
-version 2.8, 15 November 2022
+version 2.9, 1 February 2023
 
-_Note: Terminal.app or the process running this script will need Full Disk Access_
+_Note: Terminal.app (or the process used to launch this script) will need Full Disk Access_
 
 ## What does it do?
 Reads the system and user tcc.db and translates the following:
